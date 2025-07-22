@@ -52,8 +52,31 @@ cd credit_approval_system
 docker-compose up
 ```
 >Access the APIs at
+
+# Base URL (replace with your actual one)
 ```bash
-http://localhost:8000/api/v1/
+BASE_URL="http://ip172-18-0-31-d1vr7m291nsg009b6qu0-8000.direct.labs.play-with-docker.com/api/v1"
+
+#  Register
+curl -X POST "$BASE_URL/register/" \
+  -H "Content-Type: application/json" \
+  -d '{"name":"XYZ","email":"XYZ@example.com","phone":"9999999999"}'
+
+# Check Eligibility
+curl -X POST "$BASE_URL/check-eligibility/" \
+  -H "Content-Type: application/json" \
+  -d '{"customer_id": 1}'
+
+#  Create Loan
+curl -X POST "$BASE_URL/create-loan/" \
+  -H "Content-Type: application/json" \
+  -d '{"customer_id":1,"amount":5000,"tenure":12}'
+
+ #View Single Loan
+curl -X GET "$BASE_URL/view-loan/1/" 
+
+#  View All Loans for a Customer
+curl -X GET "$BASE_URL/view-loans/1/"
 ```
 
 
