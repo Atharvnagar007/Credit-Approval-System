@@ -13,7 +13,7 @@ from users.serializer import CustomerSerializer
 from users.utils import *
 
 # /api/v1/register/
-@api_view(['POST'])
+@api_view(['GET'])
 def register_customer(request):
     serializer = CustomerSerializer(data=request.data)
 
@@ -52,7 +52,7 @@ def register_customer(request):
     return JsonResponse({'message': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
     
 # /api/v1/check-eligibility/
-@api_view(['POST'])
+@api_view(['GET'])
 def check_eligibility(request):
     customer_id = request.data.get("customer_id")
     loan_amount = request.data.get("loan_amount")
